@@ -10,9 +10,9 @@ One-line elevator pitch
 - Cloud sandbox to simulate cyber-attacks (DoS, MitM, injection, replay) against avionics networks (CAN, ARINC-like) and to test detection/defense strategies. Designed as a portfolio project to demonstrate practical skills in aeronautical systems simulation, cybersecurity, cloud automation (Azure), and observability.
 
 Why this project matters
-- Avionics systems have high safety and security requirements. This project demonstrates secure-by-design thinking by simulating attacks and defenses in a safe, isolated cloud environment instead of real aircraft hardware. Great for recruiters to evaluate practical skills in system-level thinking, cloud infra, security engineering, and embedded/network simulation.
+- Avionics systems have high safety and security requirements. This project demonstrates secure-by-design thinking by simulating attacks and defenses in a safe, isolated cloud environment instead of real aircraft hardware. 
 
-Highlights / Recruiter snapshot
+Highlights
 - Domain: Aeronautical engineering × Cybersecurity × Cloud (Azure)
 - Demonstrates: Attack simulation, defensive controls, logging/monitoring, IaC, containerization, test automation, ML-ready telemetry pipeline.
 - Technologies: Python, Scapy, Flask, Azure SDK, Terraform, Docker, pytest, pandas, scikit-learn, TensorFlow.
