@@ -46,7 +46,7 @@ Repository layout (important files)
 - tests/ — pytest test suite
 - requirements.txt — pinned dependencies
 
-Skills showcased (useful for job descriptions)
+Skills showcased
 - Network protocol simulation (packet crafting and analysis with Scapy)
 - Threat emulation (DoS, MitM, replay, injection)
 - Security controls (IDS design, encryption usage, auth, rule-based firewall)
@@ -114,20 +114,6 @@ Sample outputs to show in portfolio / README visuals
 - IDS alert dashboard screenshots
 - Terraform plan/apply logs (sanitized)
 - Unit test coverage badge (after CI)
-
-How recruiters should evaluate code
-- Look at src/attacks and src/defense for algorithmic clarity and comments
-- Check src/azure for infra patterns and secure credential handling (DefaultAzureCredential)
-- Review tests/ for coverage and scenario-driven tests
-- Inspect config/ for reproducible experiments
-
-Contributing
-- Fork → feature branch → PR with tests and docs
-- Keep PRs small and focused; include config changes required to reproduce your result
-
-Contact / Portfolio context
-- Add a short, one-line summary of your role on the project and a link to a live demo or walkthrough video (if available). Example:
-  "Implemented network simulator and IDS prototype (Python/Scapy), wrote Terraform templates for Azure testbed, and produced five reproducible attack/defense scenarios — demo: <link>"
 
 License
 - MIT (update to your preferred license). See LICENSE file in repo.
