@@ -1,0 +1,153 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.env
+.venv/
+.venv*/
+venv/
+venv*/
+ENV/
+env/
+env.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# IDEs and editors
+.vscode/
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and runtime files
+logs/
+*.log
+*.out
+*.err
+*.pid
+*.seed
+*.sqlite3
+*.db
+*.db-journal
+
+# Azure / Terraform / Cloud
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfstate.backup
+.terraform.lock.hcl
+*.tfvars
+azureProfile.json
+*.azure
+.azure/
+credentials
+azureCredentials.json
+
+# Docker
+docker-compose.override.yml
+docker-compose.*.yml
+**/Dockerfile.*
+docker-compose*.yml
+*.dockerignore
+*.img
+*.tar
+
+# Container / build artifacts
+dist/
+tmp/
+temp/
+build/
+*.manifest
+*.class
+
+# Secrets and environment files
+.env
+.env.local
+.env.*.local
+secrets.json
+credentials.json
+secret-keys.json
+/.env
+
+# Notebook checkpoints
+.ipynb_checkpoints
+
+# Machine learning artifacts
+models/
+*.h5
+*.hdf5
+saved_model/
+export/
+checkpoints/
+*.ckpt
+
+# Logs and data
+data/
+datasets/
+outputs/
+results/
+reports/
+*.csv
+*.tsv
+
+# System-specific
+Thumbs.db
+ehthumbs.db
+
+# Visual Studio
+*.VC.db
+*.VC.VC.opendb
+
+# Misc
+*.swp
+*~.nib
+*.rej
+
+# Allow explicit tracked files (remove leading slash to ignore the folder itself)
+!/src/
+!/config/
+!/deployment/
+!/requirements.txt

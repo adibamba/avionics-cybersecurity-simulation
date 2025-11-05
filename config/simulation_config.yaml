@@ -1,0 +1,30 @@
+network_topology:
+  type: "mesh"
+  nodes:
+    - id: "node1"
+      role: "avionics_system"
+    - id: "node2"
+      role: "flight_controller"
+    - id: "node3"
+      role: "network_simulator"
+
+attack_scenarios:
+  - type: "DoS"
+    target: "node1"
+    duration: "60s"
+  - type: "MITM"
+    target: "node2"
+    duration: "120s"
+  - type: "injection"
+    target: "node1"
+    payload: "malicious_command"
+    duration: "30s"
+  - type: "replay"
+    target: "node3"
+    duration: "45s"
+
+simulation_parameters:
+  simulation_time: "300s"
+  logging_level: "DEBUG"
+  enable_monitoring: true
+  monitoring_interval: "10s"

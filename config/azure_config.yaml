@@ -1,0 +1,18 @@
+resources:
+  azure:
+    region: "East US"
+    resource_group: "avionics-cybersecurity-simulation-rg"
+    storage_account: "avionicsstorage"
+    container_name: "simulation-data"
+    vm_size: "Standard_DS1_v2"
+    vm_count: 2
+    monitoring:
+      enabled: true
+      log_analytics_workspace: "avionics-log-analytics"
+      alert_rules:
+        - name: "High CPU Usage"
+          threshold: 80
+          duration: "5m"
+        - name: "Unauthorized Access Attempt"
+          threshold: 1
+          duration: "1h"
