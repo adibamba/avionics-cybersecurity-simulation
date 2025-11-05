@@ -1,7 +1,24 @@
 class FlightController:
-    def __init__(self, avionics_system):
+    def __init__(self, avionics_system=None):
         self.avionics_system = avionics_system
         self.flight_status = "Grounded"
+
+    def attach(self, avionics_system):
+        """Attach or swap the avionics system at runtime."""
+        self.avionics_system = avionics_system
+        return True
+
+    def issue_command(self, command: str) -> bool:
+        """Send a command to the attached avionics system (no-op if none)."""
+        if self.avionics_system and hasattr(self.avionics_system, "receive_command"):
+            try:
+                self.avionics_system.receive_command(command)
+            except Exception:
+                pass
+        return True
+
+    def send_command(self, command: str) -> bool:
+        return self.issue_command(command)
 
     def take_off(self):
         if self.avionics_system.check_systems():

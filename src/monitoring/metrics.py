@@ -1,38 +1,65 @@
-def collect_metrics():
-    # Function to collect performance metrics during the simulation
-    metrics = {
-        "cpu_usage": get_cpu_usage(),
-        "memory_usage": get_memory_usage(),
-        "network_traffic": get_network_traffic(),
-        "disk_io": get_disk_io(),
-    }
-    return metrics
+import time
 
-def get_cpu_usage():
-    # Placeholder for CPU usage collection logic
-    return 0  # Replace with actual CPU usage retrieval
+class Metrics:
+    """
+    A simple class to collect and store simulation metrics.
+    
+    This acts as a central point for recording events like attacks,
+    packets sent, or defense actions.
+    """
+    def __init__(self):
+        # A dictionary to hold all our metrics.
+        # We can store simple counters, lists of timings, etc.
+        self._data = {
+            "events": [],
+            "counters": {},
+            "start_time": time.time()
+        }
 
-def get_memory_usage():
-    # Placeholder for memory usage collection logic
-    return 0  # Replace with actual memory usage retrieval
+    def increment(self, metric_name: str, count: int = 1):
+        """
+        Increments a named counter. If the counter doesn't exist, it's created.
+        
+        Example: metrics.increment("packets_sent")
+        """
+        current_count = self._data["counters"].get(metric_name, 0)
+        self._data["counters"][metric_name] = current_count + count
 
-def get_network_traffic():
-    # Placeholder for network traffic collection logic
-    return 0  # Replace with actual network traffic retrieval
+    def record_event(self, event_name: str, details: dict = None):
+        """
+        Records a timestamped event.
+        
+        Example: metrics.record_event("dos_attack_started", {"target": "node1"})
+        """
+        event = {
+            "timestamp": time.time(),
+            "event": event_name,
+            "details": details or {}
+        }
+        self._data["events"].append(event)
 
-def get_disk_io():
-    # Placeholder for disk I/O collection logic
-    return 0  # Replace with actual disk I/O retrieval
+    def get_metrics(self) -> dict:
+        """
+        Returns a snapshot of all collected metrics.
+        """
+        # Add the total runtime to the output
+        self._data["runtime_seconds"] = time.time() - self._data["start_time"]
+        return self._data
 
-def analyze_metrics(metrics):
-    # Function to analyze collected metrics and determine performance issues
-    issues = []
-    if metrics["cpu_usage"] > 80:
-        issues.append("High CPU usage")
-    if metrics["memory_usage"] > 80:
-        issues.append("High memory usage")
-    if metrics["network_traffic"] > 1000:
-        issues.append("High network traffic")
-    if metrics["disk_io"] > 100:
-        issues.append("High disk I/O")
-    return issues
+    def print_summary(self):
+        """
+        Prints a simple summary of the collected metrics to the console.
+        """
+        summary = self.get_metrics()
+        print("\n--- Simulation Metrics Summary ---")
+        print(f"Total Runtime: {summary['runtime_seconds']:.2f} seconds")
+        
+        print("\nCounters:")
+        if summary["counters"]:
+            for name, value in summary["counters"].items():
+                print(f"  - {name}: {value}")
+        else:
+            print("  (No counters recorded)")
+            
+        print(f"\nTotal Events Recorded: {len(summary['events'])}")
+        print("--------------------------------\n")

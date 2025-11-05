@@ -2,19 +2,19 @@ import unittest
 from src.simulation.avionics_system import AvionicsSystem
 from src.simulation.network_simulator import NetworkSimulator
 from src.simulation.flight_controller import FlightController
+from src.defense.intrusion_detection import IntrusionDetection
 from src.attacks.dos_attack import DoSAttack
 from src.attacks.mitm_attack import MITMAttack
-from src.defense.intrusion_detection import IntrusionDetection
 
 class TestSimulation(unittest.TestCase):
 
     def setUp(self):
         self.avionics_system = AvionicsSystem()
         self.network_simulator = NetworkSimulator()
-        self.flight_controller = FlightController()
+        self.flight_controller = FlightController(self.avionics_system)
+        self.intrusion_detection = IntrusionDetection()
         self.dos_attack = DoSAttack()
         self.mitm_attack = MITMAttack()
-        self.intrusion_detection = IntrusionDetection()
 
     def test_avionics_system_initialization(self):
         self.assertIsNotNone(self.avionics_system)
@@ -34,7 +34,13 @@ class TestSimulation(unittest.TestCase):
         self.assertTrue(result)
 
     def test_intrusion_detection(self):
+        # 1. Add malicious traffic to the simulator first
+        self.network_simulator.send("attacker_ip", "victim_ip", "malicious_payload")
+        
+        # 2. Now, run the monitor method
         self.intrusion_detection.monitor(self.network_simulator)
+        
+        # 3. The assertion should now pass because a threat was found
         self.assertTrue(self.intrusion_detection.detect_threats())
 
 if __name__ == '__main__':

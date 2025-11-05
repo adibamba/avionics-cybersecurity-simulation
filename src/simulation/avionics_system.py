@@ -1,29 +1,52 @@
 class AvionicsSystem:
-    def __init__(self):
-        self.system_state = {
-            "navigation": "offline",
-            "communication": "offline",
-            "control": "inactive"
-        }
+    """
+    Represents the collection of avionics subsystems on the aircraft.
+    It manages the state and health of each component based on a configuration.
+    """
+    def __init__(self, config=None):
+        """
+        Initializes the avionics system based on a configuration dictionary.
 
-    def initialize_system(self):
-        self.system_state["navigation"] = "online"
-        self.system_state["communication"] = "online"
-        self.system_state["control"] = "active"
-        return self.system_state
+        Args:
+            config (dict, optional): A dictionary containing system definitions,
+                                     like the 'avionics' section from the YAML file.
+                                     Defaults to None for testability.
+        """
+        self.systems = {}
 
-    def simulate_communication(self, message):
-        if self.system_state["communication"] == "online":
-            return f"Communicating: {message}"
-        else:
-            return "Communication system is offline."
+        # If a config is provided, load the systems from it
+        if config and "systems" in config:
+            for system_config in config["systems"]:
+                sys_id = system_config.get("id")
+                if sys_id:
+                    self.systems[sys_id] = {
+                        "name": system_config.get("name", "Unknown"),
+                        "status": system_config.get("status", "offline")
+                    }
+        
+        # If no config or systems, create a default one for basic functionality
+        if not self.systems:
+            self.systems["default"] = {"name": "Default System", "status": "nominal"}
 
-    def update_control(self, status):
-        if status in ["active", "inactive"]:
-            self.system_state["control"] = status
-            return f"Control system is now {status}."
-        else:
-            return "Invalid control status."
+    def get_system_status(self, system_id: str) -> str:
+        """
+        Returns the status of a specific avionics subsystem.
+        """
+        system = self.systems.get(system_id)
+        return system["status"] if system else "not_found"
 
-    def get_system_status(self):
-        return self.system_state
+    def update_system_status(self, system_id: str, new_status: str):
+        """
+        Updates the status of a specific avionics subsystem.
+        """
+        if system_id in self.systems:
+            self.systems[system_id]["status"] = new_status
+            return True
+        return False
+
+    def receive_command(self, command: str):
+        """
+        A placeholder method for receiving commands from the FlightController.
+        """
+        # In a real simulation, this would affect system state.
+        pass
